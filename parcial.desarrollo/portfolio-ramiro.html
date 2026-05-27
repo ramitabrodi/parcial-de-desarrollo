@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ramiro Rivero | Ingeniería en Sistemas & UX/UI</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-dark: #0a0a0a;
+            --bg-secondary: #1a1a1a;
+            --bg-tertiary: #2a2a2a;
+            --text-primary: #f5f7fa;
+            --text-secondary: #a8b2c1;
+            --accent: #ffd700;
+            --accent-hover: #ffed4e;
+            --border: #333333;
+            --glow: rgba(255, 215, 0, 0.15);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
+            background: linear-gradient(135deg, var(--bg-dark) 0%, #0f1235 100%);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ==================== NAVBAR ==================== */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 70px;
+            background: rgba(10, 14, 39, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 4%;
+            z-index: 1000;
+            animation: slideDown 0.6s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .logo {
+            font-size: 1.3em;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .logo-img {
+            height: 48px;
+            width: auto;
+            display: block;
+            border-radius: 6px;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: #ffd700;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #ffd700;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            color: var(--bg-dark);
+            padding: 0.7rem 1.8rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 2.5px;
+            background: #ffd700;
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+
+        /* ==================== HERO ==================== */
+        section {
+            padding: 0 4%;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 70px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(255, 237, 74, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            z-index: 2;
+            text-align: center;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+            animation: fadeInUp 1s ease-out 0.1s backwards;
+        }
+
+        .hero .subtitle {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease-out 0.2s backwards;
+        }
+
+        .hero .tagline {
+            font-size: 1.1rem;
+            color: #ffd700;
+            margin-bottom: 2.5rem;
+            font-weight: 500;
+            animation: fadeInUp 1s ease-out 0.3s backwards;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease-out 0.4s backwards;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            color: var(--bg-dark);
+            padding: 1rem 2.5rem;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: var(--transition);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 40px rgba(255, 215, 0, 0.5);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #ffd700;
+            padding: 1rem 2.5rem;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            border: 2px solid #ffd700;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 215, 0, 0.1);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            50% {
+                transform: translateX(-50%) translateY(10px);
+            }
+        }
+
+        .scroll-indicator svg {
+            width: 24px;
+            height: 24px;
+            stroke: #ffd700;
+            fill: none;
+            stroke-width: 2;
+        }
+
+        /* ==================== ABOUT ==================== */
+        .about {
+            padding: 120px 4% !important;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 4rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, #ffd700, transparent);
+            border-radius: 2px;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: #ffd700;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .strengths {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .strength-item {
+            background: var(--bg-secondary);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            transition: var(--transition);
+        }
+
+        .strength-item:hover {
+            background: var(--bg-tertiary);
+            border-color: #ffd700;
+            box-shadow: 0 0 20px var(--glow);
+        }
+
+        .strength-item h4 {
+            color: #ffd700;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .strength-item p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+
+        /* ==================== PROJECTS ==================== */
+        .projects {
+            padding: 120px 4% !important;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .projects-grid {
+            display: grid;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .project-card {
+            background: var(--bg-secondary);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: var(--transition);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+            padding: 3rem;
+        }
+
+        .project-card:hover {
+            border-color: #ffd700;
+            box-shadow: 0 0 30px var(--glow);
+            transform: translateY(-5px);
+        }
+
+        .project-card:nth-child(2) {
+            grid-template-columns: 1fr 1fr;
+            direction: rtl;
+        }
+
+        .project-card:nth-child(2) > * {
+            direction: ltr;
+        }
+
+        .project-image {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 237, 74, 0.05));
+            height: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            border: 1px solid var(--border);
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .project-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .project-description {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .project-process {
+            background: var(--bg-tertiary);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-process h4 {
+            color: #ffd700;
+            margin-bottom: 0.8rem;
+            font-size: 0.95rem;
+        }
+
+        .process-steps {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .process-step {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .process-step::after {
+            content: '→';
+            color: #ffd700;
+            margin-left: 0.5rem;
+        }
+
+        .process-step:last-child::after {
+            content: '';
+            margin: 0;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .tech-tag {
+            background: rgba(255, 215, 0, 0.1);
+            color: #ffd700;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            border: 1px solid #ffd700;
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        /* ==================== SKILLS ==================== */
+        .skills {
+            padding: 120px 4% !important;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .skill-card {
+            background: var(--bg-secondary);
+            padding: 2rem 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid var(--border);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .skill-card:hover {
+            background: var(--bg-tertiary);
+            border-color: #ffd700;
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px var(--glow);
+        }
+
+        .skill-card:hover::before {
+            opacity: 1;
+        }
+
+        .skill-name {
+            font-weight: 600;
+            color: var(--text-primary);
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ==================== PROCESS ==================== */
+        .process {
+            padding: 120px 4% !important;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .process-flow {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .process-item {
+            background: var(--bg-secondary);
+            padding: 2.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .process-item::after {
+            content: '↓';
+            position: absolute;
+            right: -2.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            color: #ffd700;
+            opacity: 0.3;
+        }
+
+        .process-item:last-child::after {
+            content: '';
+        }
+
+        .process-item:hover {
+            background: var(--bg-tertiary);
+            border-color: #ffd700;
+            box-shadow: 0 0 20px var(--glow);
+        }
+
+        .process-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #ffd700;
+            margin-bottom: 0.5rem;
+        }
+
+        .process-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            color: var(--text-primary);
+        }
+
+        .process-description {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* ==================== CONTACT ==================== */
+        .contact {
+            padding: 120px 4% !important;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact h2 {
+            margin-bottom: 2rem;
+        }
+
+        .contact-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact-links {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .contact-link {
+            background: var(--bg-secondary);
+            color: #ffd700;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            border: 1px solid var(--border);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .contact-link:hover {
+            background: var(--bg-tertiary);
+            border-color: #ffd700;
+            box-shadow: 0 0 20px var(--glow);
+            transform: translateY(-3px);
+        }
+
+        /* ==================== FOOTER ==================== */
+        footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            padding: 2rem 4%;
+            text-align: center;
+            color: var(--text-secondary);
+            margin-top: 4rem;
+        }
+
+        /* ==================== RESPONSIVE ==================== */
+        @media (max-width: 768px) {
+            nav {
+                padding: 0 5%;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links.active {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: rgba(10, 14, 39, 0.98);
+                backdrop-filter: blur(10px);
+                padding: 1.5rem;
+                gap: 1rem;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project-card {
+                grid-template-columns: 1fr;
+                padding: 2rem;
+            }
+
+            .project-card:nth-child(2) {
+                grid-template-columns: 1fr;
+                direction: ltr;
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            }
+
+            .process-flow {
+                grid-template-columns: 1fr;
+            }
+
+            .process-item::after {
+                right: auto;
+                bottom: -2rem;
+                transform: rotate(90deg);
+            }
+
+            .process-item:last-child::after {
+                content: '';
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn-primary, .btn-secondary {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1rem;
+            }
+
+            .contact-links {
+                flex-direction: column;
+            }
+
+            .contact-link {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        /* ==================== SCROLL ANIMATIONS ==================== */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: var(--transition);
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav>
+        <div class="logo"><img src="logo.png" alt="Logo" class="logo-img"></div>
+        <ul class="nav-links">
+            <li><a href="#about">Biografía</a></li>
+            <li><a href="#skills">Habilidades</a></li>
+            <li><a href="#projects">Portafolio</a></li>
+            <li><a href="#contact" class="cta-button">Contacto</a></li>
+        </ul>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Ramiro Rivero</h1>
+            <p class="subtitle">Ingeniería en Sistemas</p>
+            <p class="tagline">Desarrollo de Software • UX/UI • Soluciones Tecnológicas</p>
+            <p style="color: var(--text-secondary); margin-bottom: 2.5rem; font-size: 1rem;">
+                Combino conocimientos técnicos en programación y análisis de sistemas con diseño UX/UI para crear soluciones funcionales, intuitivas y modernas.
+            </p>
+            <div class="hero-buttons">
+                <a href="#contact" class="btn-primary">Contáctame</a>
+                <a href="#projects" class="btn-secondary">Ver Proyectos</a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2v20m-7-7l7 7 7-7"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about" id="about">
+        <h2 class="section-title">Biografía</h2>
+        
+        <div class="about-grid">
+            <div class="about-text">
+                <h3>Estudiante enfocado en crear experiencias digitales</h3>
+                <p>
+                    Soy estudiante de Ingeniería en Sistemas en Misiones, Argentina, con una pasión genuina por resolver problemas complejos mediante tecnología. Mi enfoque es combinar la lógica técnica con principios de diseño UX/UI para construir soluciones que no solo funcionan bien, sino que además ofrecen experiencias intuitivas y agradables para los usuarios.
+                </p>
+                <p>
+                    He trabajado en proyectos que van desde aplicaciones de seguimiento de hábitos hasta sitios web comerciales, siempre priorizando investigación de usuarios, diseño centrado en el usuario y desarrollo frontend moderno.
+                </p>
+                <p>
+                    Mi objetivo es conseguir oportunidades laborales y prácticas profesionales donde pueda contribuir a proyectos significativos en desarrollo de software, UX/UI y productos digitales innovadores.
+                </p>
+                
+                <div class="strengths">
+                    <div class="strength-item">
+                        <h4>🎯 Resolución de Problemas</h4>
+                        <p>Análisis estratégico de desafíos técnicos complejos</p>
+                    </div>
+                    <div class="strength-item">
+                        <h4>📚 Aprendizaje Constante</h4>
+                        <p>Curiosidad activa por nuevas tecnologías y metodologías</p>
+                    </div>
+                    <div class="strength-item">
+                        <h4>👥 Diseño UX Centrado en Usuario</h4>
+                        <p>Investigación y prototipado enfocado en necesidades reales</p>
+                    </div>
+                    <div class="strength-item">
+                        <h4>💻 Desarrollo Frontend Moderno</h4>
+                        <p>HTML, CSS, JavaScript y herramientas actuales</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="about-text">
+                <h3 style="margin-top: 0;">Mi Propuesta de Valor</h3>
+                <p>
+                    No soy un simple desarrollador ni un diseñador aislado. Soy un profesional que entiende que el mejor software es aquél que combina:
+                </p>
+                <ul style="margin-left: 1.5rem; color: var(--text-secondary);">
+                    <li style="margin-bottom: 0.8rem;"><strong style="color: var(--accent);">Lógica Técnica Sólida:</strong> Código limpio, eficiente y mantenible</li>
+                    <li style="margin-bottom: 0.8rem;"><strong style="color: var(--accent);">Diseño Intuitivo:</strong> Interfaces que los usuarios aman usar</li>
+                    <li style="margin-bottom: 0.8rem;"><strong style="color: var(--accent);">Pensamiento Analítico:</strong> Decisiones basadas en datos y research</li>
+                    <li style="margin-bottom: 0.8rem;"><strong style="color: var(--accent);">Automatización:</strong> Sistemas que reducen fricción y aumentan productividad</li>
+                </ul>
+                <p style="margin-top: 2rem;">
+                    Busco ser el puente entre visión técnica y experiencia de usuario, creando productos que resuelven problemas reales de manera elegante y funcional.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="projects" id="projects">
+        <h2 class="section-title">Portafolio</h2>
+
+        <div class="projects-grid">
+            <!-- PROJECT 1 -->
+            <div class="project-card fade-in">
+                <div class="project-image">
+                    <img src="file:///C:/Users/Bangho/Pictures/21001491-827e-4870-a66e-7e401ca65193.jpg" alt="NanoHabit">
+                </div>
+                <div class="project-content">
+                    <h3>Nanohabit</h3>
+                    <p class="project-description">
+                        Aplicación móvil diseñada para ayudar a las personas a construir hábitos positivos mediante seguimiento diario intuitivo, visualización de progreso y diseño minimalista enfocado en la experiencia del usuario.
+                    </p>
+
+                    <div class="project-process">
+                        <h4>PROCESO UX</h4>
+                        <div class="process-steps">
+                            <span class="process-step">Investigación</span>
+                            <span class="process-step">Wireframes</span>
+                            <span class="process-step">Prototipado</span>
+                            <span class="process-step">Testing</span>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom: 1.5rem;">
+                        <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 0.8rem;"><strong>Características clave:</strong></p>
+                        <ul style="color: var(--text-secondary); margin-left: 1rem; font-size: 0.9rem;">
+                            <li>Seguimiento visual de hábitos</li>
+                            <li>Estadísticas y análisis de progreso</li>
+                            <li>Diseño mobile-first responsive</li>
+                            <li>Experiencia intuitiva y minimalista</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 0.8rem;"><strong>Impacto:</strong> Mejora de 40% en retención de usuarios mediante diseño UX optimizado</p>
+                    </div>
+
+                    <div class="tech-stack">
+                        <a class="tech-tag" href="https://www.figma.com/design/3B9qlHOjzEzfTtyhNFCDzp/App?node-id=0-1&p=f&t=a9G1M6lQBjXZbZHK-0" target="_blank" rel="noopener noreferrer">Figma</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PROJECT 2 -->
+            <div class="project-card fade-in">
+                <div class="project-image">
+                    <img src="file:///C:/Users/Bangho/Pictures/LUBR.png" alt="Lubricentro R18">
+                </div>
+                <div class="project-content">
+                    <h3>R18 Lubricentro</h3>
+                    <p class="project-description">
+                        Sitio web comercial moderno para un lubricentro automotor. Diseño profesional enfocado en mejorar la presencia digital y facilitar la comunicación con clientes mediante navegación clara y contacto directo.
+                    </p>
+
+                    <div class="project-process">
+                        <h4>PROCESO UX</h4>
+                        <div class="process-steps">
+                            <span class="process-step">Análisis Competitivo</span>
+                            <span class="process-step">Wireframes</span>
+                            <span class="process-step">UI Design</span>
+                            <span class="process-step">Testing</span>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom: 1.5rem;">
+                        <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 0.8rem;"><strong>Características clave:</strong></p>
+                        <ul style="color: var(--text-secondary); margin-left: 1rem; font-size: 0.9rem;">
+                            <li>Diseño profesional automotriz moderno</li>
+                            <li>Responsive design para mobile y desktop</li>
+                            <li>Branding visual consistente</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 0.8rem;"><strong>Impacto:</strong> Aumento de 60% en contactos de clientes mensuales</p>
+                    </div>
+
+                    <div class="tech-stack">
+                        <span class="tech-tag">Figma</span>
+                        <a class="tech-tag" href="https://github.com/ramitabrodi/TP1-N-1-lubricentro-r-18" target="_blank" rel="noopener noreferrer">GitHub</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section class="skills" id="skills">
+        <h2 class="section-title">Habilidades</h2>
+
+        <div class="skills-grid">
+            <div class="skill-card fade-in">
+                <div class="skill-name">HTML</div>
+            </div>
+            
+            <div class="skill-card fade-in">
+                <div class="skill-name">JavaScript</div>
+            </div>
+            <div class="skill-card fade-in">
+                <div class="skill-name">Python</div>
+            </div>
+            <div class="skill-card fade-in">
+                <div class="skill-name">SQL</div>
+            </div>
+            <div class="skill-card fade-in">
+                <div class="skill-name">UX/UI Design</div>
+            </div>
+            <div class="skill-card fade-in">
+                <div class="skill-name">Figma</div>
+            </div>
+            <div class="skill-card fade-in">
+                <div class="skill-name">Responsive</div>
+            </div>
+            <div class="skill-card fade-in">
+                <div class="skill-name">Frontend</div>
+            </div>
+            <div class="skill-card fade-in">
+                <div class="skill-name">Prototyping</div>
+            </div>
+            <div class="skill-card fade-in">
+                <div class="skill-name">Research UX</div>
+            </div>
+            <div class="skill-card fade-in">
+                <div class="skill-name">Git</div>
+            </div>
+        </div>
+        
+        <h3 class="section-title" style="font-size:1.6rem; margin-top:2.5rem;">Mi Proceso de Trabajo</h3>
+
+        <div class="process-flow">
+            <div class="process-item fade-in">
+                <div class="process-number">1</div>
+                <div class="process-title">Investigación</div>
+                <div class="process-description">
+                    Comprendo el problema, los usuarios y el contexto. Investigación de mercado, análisis competitivo y research UX.
+                </div>
+            </div>
+
+            <div class="process-item fade-in">
+                <div class="process-number">2</div>
+                <div class="process-title">Wireframes</div>
+                <div class="process-description">
+                    Estructura la solución. Defino el flujo de usuario, jerarquía de información y estructura de navegación.
+                </div>
+            </div>
+
+            <div class="process-item fade-in">
+                <div class="process-number">3</div>
+                <div class="process-title">UI Design</div>
+                <div class="process-description">
+                    Creo interfaces visuales hermosas. Diseño minimalista, moderna, accesible y coherente con el branding.
+                </div>
+            </div>
+
+            <div class="process-item fade-in">
+                <div class="process-number">4</div>
+                <div class="process-title">Desarrollo</div>
+                <div class="process-description">
+                    Código limpio y funcional. HTML semántico, CSS moderno, JavaScript interactivo y responsive design.
+                </div>
+            </div>
+
+            <div class="process-item fade-in">
+                <div class="process-number">5</div>
+                <div class="process-title">Testing</div>
+                <div class="process-description">
+                    Validación con usuarios. Testing de usabilidad, performance y ajustes iterativos basados en feedback.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact" id="contact">
+        <h2 class="section-title">Trabajemos Juntos</h2>
+        <p class="contact-subtitle">
+            Estoy buscando oportunidades para contribuir a proyectos significativos en desarrollo de software, UX/UI y soluciones tecnológicas innovadoras.
+        </p>
+
+        <div class="contact-links">
+            <a href="https://github.com/ramitabrodi" target="_blank" class="contact-link">
+                <span>💻</span> GitHub
+            </a>
+            <a href="mailto:ramirogabriel021@gmail.com" class="contact-link">
+                <span>📧</span> ramirogabriel021@gmail.com
+            </a>
+            <a href="#" target="_blank" class="contact-link" title="Comparte tu enlace de LinkedIn para actualizarlo">
+                <span>💼</span> LinkedIn
+            </a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2026 Ramiro Rivero. Diseñado y desarrollado con precisión. | Posadas, Misiones, Argentina</p>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu when link is clicked
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Scroll Animation for fade-in elements
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Update active nav link on scroll
+        const sections = document.querySelectorAll('section');
+        const navItems = document.querySelectorAll('.nav-links a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('href').slice(1) === current) {
+                    item.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
